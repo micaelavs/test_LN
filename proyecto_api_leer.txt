@@ -1,0 +1,101 @@
+PROBAR LA API CON POSTMAN!
+create -  post
+http://localhost:63279/contact/create
+
+datos a enviar, ejemplo
+
+
+{
+    "id": 1,
+    "name": "Pepe lopez",
+    "company":"MVSDigital",
+    "profile": "",
+    "image":"imagen222.jpg",
+    "email":"info@lopez.com.ar",
+    "birthdate":"1986/04/20",
+    "phonenumber": {
+        "personal": 3322,
+        "work":"22333"
+    },
+    "address": "abc 33222",   
+    "timestamp": "AAAAAAAAB9E=" ,
+ 	"idCity":"2"
+}
+
+----
+getbyId
+
+http://localhost:63279/contact/getById?id=5
+retorno:
+{
+    "Id": 5,
+    "Name": "Pepe Luis1",
+    "Company": "Digital pepe",
+    "Profile": "",
+    "Image": "otraimagen33.jpg",
+    "Email": "info@pepe.com.ar",
+    "Birthdate": "1986-04-20T00:00:00",
+    "PhoneNumber": {
+        "Personal": "123",
+        "Work": "333"
+    },
+    "Address": "lalala 123",
+    "IdCity": 3,
+    "City": null,
+    "Timestamp": "AAAAAAAAB9g="
+}
+----
+update  - put
+http://localhost:63279/contact/update
+
+{
+    "id": 1,
+    "name": "Micaela Sanchez",
+    "company":"MVSDigital",
+    "profile": "",
+    "image":"otraimagen2.jpg",
+    "email":"info@micaelasanchez.com.ar",
+    "birthdate":"1986/04/20",
+    "phonenumber": {
+        "personal": "123",
+        "work":"1234"
+    },
+    "address": "abc 123",   
+    "timestamp": "AAAAAAAAB9E=" ,
+ "idCity":"2",
+}
+
+el timestamp hay que obtenerlo con getbyid primero, LUEGO, ENVIARLE LOS DATOS A MODIFICAR
+EN EL BODY a /contact/update
+
+
+---
+delete
+
+http://localhost:63279/contact/delete/2
+
+---buscar por mail o tel
+
+http://localhost:63279/contact/getByContactInfo?contactInfo=123
+
+
+http://localhost:63279/contact/getByContactInfo?contactInfo=info@pepe.com.ar
+
+----
+
+lista los contactos de una misma ciudad
+http://localhost:63279/contact/getByCityId?cityId=3
+
+--
+anotacion (mia)...
+ /*[HttpPost]
+        [Route("create")]
+        public IHttpActionResult Create([FromBody] Contact contact) 
+        {
+            var repo = new RepositoryContact();
+            repo.Insert(contact);
+
+            return Ok();
+        }*/
+
+
